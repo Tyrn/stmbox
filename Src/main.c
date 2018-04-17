@@ -52,11 +52,12 @@
 #include "cmsis_os.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "morse.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
 osThreadId defaultTaskHandle;
+osThreadId myTaskMorseHandle;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
@@ -67,6 +68,7 @@ osThreadId defaultTaskHandle;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 void StartDefaultTask(void const * argument);
+void StartTaskMorse(void const * argument);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -126,6 +128,10 @@ int main(void)
   /* definition and creation of defaultTask */
   osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
+
+  /* definition and creation of myTaskMorse */
+  osThreadDef(myTaskMorse, StartTaskMorse, osPriorityNormal, 0, 128);
+  myTaskMorseHandle = osThreadCreate(osThread(myTaskMorse), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -248,6 +254,21 @@ void StartDefaultTask(void const * argument)
     osDelay(1);
   }
   /* USER CODE END 5 */ 
+}
+
+/* StartTaskMorse function */
+void StartTaskMorse(void const * argument)
+{
+  /* USER CODE BEGIN StartTaskMorse */
+  /* Infinite loop */
+  for(;;)
+  {
+    s();
+    osDelay(DASH_DURATION * 4);
+
+    osDelay(1);
+  }
+  /* USER CODE END StartTaskMorse */
 }
 
 /**

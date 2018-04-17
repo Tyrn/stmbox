@@ -5,8 +5,8 @@
 static
 void morse_delay(uint32_t Duration)
 {
-  HAL_Delay(Duration);
-//  osDelay(Duration);
+//  HAL_Delay(Duration);
+  osDelay(Duration);
 }
 
 void squeak(uint32_t Duration)

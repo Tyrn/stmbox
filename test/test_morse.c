@@ -12,8 +12,8 @@ void tearDown(void)
 {
 }
 
-#define Stub_Delay_Expect(d) HAL_Delay_Expect(d)
-//#define Stub_Delay_Expect(d) osDelay_ExpectAndReturn((d), osOK)
+//#define Stub_Delay_Expect(d) HAL_Delay_Expect(d)
+#define Stub_Delay_Expect(d) osDelay_ExpectAndReturn((d), osOK)
 
 void setUp_squeak(uint32_t Duration)
 {
